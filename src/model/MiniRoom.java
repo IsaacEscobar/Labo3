@@ -6,14 +6,14 @@ public class MiniRoom {
   private double price;
   private int days;
   private double total;
-  private Pet[] petInRoom;
+  private Pet petInRoom;
 
-  public MiniRoom(boolean availability, double price, int days, double total) {
+  public MiniRoom(boolean availability, double price, int days, double total, Pet petInRoom) {
     this.availability = availability;
     this.price = price;
     this.days = days;
     this.total = total;
-    petInRoom = new Pet[1];
+    this.petInRoom = petInRoom;
   }
 
   public boolean isAvailability() {
@@ -46,5 +46,13 @@ public class MiniRoom {
 
   public void setTotal(double total) {
     this.total = total;
+  }
+
+  public Pet getPetInRoom() {
+    return petInRoom;
+  }
+
+  public void setPetInRoom(Pet petInRoom) {
+    this.petInRoom = petInRoom;
   }
 }

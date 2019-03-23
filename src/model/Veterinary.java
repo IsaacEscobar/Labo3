@@ -10,7 +10,15 @@ public class Veterinary {
   public Veterinary() {
     rooms = new MiniRoom[8];
     clients = new ArrayList<Client>();
-    MiniRoom room1 = new MiniRoom(true, 12.0, 0, 0.0);
+    rooms[0] = new MiniRoom(false, 0.0, 0, 0.0, null);
+    rooms[1] = new MiniRoom(false, 0.0, 0, 0.0, null);
+    rooms[2] = new MiniRoom(false, 0.0, 0, 0.0, null);
+    rooms[3] = new MiniRoom(false, 0.0, 0, 0.0, null);
+    rooms[4] = new MiniRoom(false, 0.0, 0, 0.0, null);
+    rooms[5] = new MiniRoom(false, 0.0, 0, 0.0, null);
+    rooms[6] = new MiniRoom(true, 0.0, 0, 0.0, null);
+    rooms[7] = new MiniRoom(false, 0.0, 0, 0.0, null);
+    // Client client = new Client("Angela", "1006206201", "Calle 10", "3208810");
   }
 
   public void addNewClient(Client newClient) {
@@ -23,19 +31,39 @@ public class Veterinary {
 
   public boolean emptyRoom() {
     boolean isEmpty = false;
-    for(int i = 0; i < rooms.length; i++) {
+    for(int i = 0; i < 8; i++) {
       if(rooms[i].isAvailability() == true) {
-        i = 8;
+        i = 7;
         isEmpty = true;
       }
     }
     return isEmpty;
   }
 
-  public void setRoomAvailabilityFalse(MiniRoom rooms) {
-    for(int i = 0; i < rooms.length; i++) {
+  public void showRoom6Availability() {
+    System.out.println(rooms[6].isAvailability());
+  }
+
+  public void setPetInARoom(Pet pet) {
+    for(int i = 0; i < 8; i++) {
       if(rooms[i].isAvailability() == true) {
-        rooms[i].isAvailability() = false;
+        i = 7;
+        rooms[i].setPetInRoom(pet);
+      }
+    }
+  }
+
+  public void showClient() {
+    System.out.println(clients.get(0).getName());
+    clients.get(0).showPets();
+  }
+
+  public void setRoomAvailabilityFalse(Pet pet) {
+    for(int i = 0; i < 8; i++) {
+      if(rooms[i].isAvailability() == true) {
+        i = 7;
+        setPetInARoom(pet);
+        rooms[i].setAvailability(false);
       }
     }
   }

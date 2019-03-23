@@ -23,7 +23,7 @@ public class Main {
 
   public void init() {
     veterinary = new Veterinary();
-    Client Angela = new Client("Angela", 1006206201, "Calle 10", 3208810);
+    Client Angela = new Client("Angela", "1006206201", "Calle 10", "3208810");
     Pet Mateo = new Pet("Mateo", "Perro", 12, 15.0, Angela);
   }
 
@@ -37,10 +37,9 @@ public class Main {
         // addClient();
         // break;
         case 1:
-        addPet();
+        hospitalizePet();
         break;
       }
-      readerString.nextLine();
     }
     while(option != 4);
   }
@@ -81,7 +80,7 @@ public class Main {
   //   veterinary.addNewClient(client);
   // }
 
-  public void addPet() {
+  public void hospitalizePet() {
     if(veterinary.emptyRoom()) {
       System.out.println("");
       String petName = "";
@@ -89,9 +88,9 @@ public class Main {
       int petAge = 0;
       double petWeight = 0.0;
       String name = "";
-      int id = 0;
+      String id = "";
       String address = "";
-      int phoneNumber = 0;
+      String phoneNumber = "";
       System.out.println("Digite el nombre de la mascota: ");
       petName = readerString.nextLine();
       System.out.println("");
@@ -100,6 +99,7 @@ public class Main {
       System.out.println("--2. Gato.");
       System.out.println("--3. Ave.");
       System.out.println("--4. Otro.");
+      System.out.println("");
       petType = readerString.nextLine();
       System.out.println("");
       System.out.println("Digite la edad de la mascota: ");
@@ -110,28 +110,30 @@ public class Main {
       petWeight = Double.valueOf(userResponse);
       System.out.println("");
       //
-      System.out.println("Digite el nombre: ");
+      System.out.println("Digite el nombre del cliente: ");
       name = readerString.nextLine();
       System.out.println("");
-      System.out.println("Digite el id: ");
-      id = readerInt.nextInt();
+      System.out.println("Digite el id del cliente: ");
+      id = readerString.nextLine();
       System.out.println("");
-      System.out.println("Digite la direccion: ");
+      System.out.println("Digite la direccion del cliente: ");
       address = readerString.nextLine();
       System.out.println("");
-      System.out.println("Digite el numero de telefono: ");
-      phoneNumber = readerInt.nextInt();
+      System.out.println("Digite el numero de telefono del cliente: ");
+      phoneNumber = readerString.nextLine();
       System.out.println("");
-      // Client client = new Client(name, id, address, phoneNumber);
-      // veterinary.addNewClient(client);
       Client client = new Client(name, id, address, phoneNumber);
       Pet pet = new Pet(petName, petType, petAge, petWeight, client);
+      veterinary.addNewClient(client);
       veterinary.addNewPet(client, pet);
-      veterinary.setRoomAvailabilityFalse();
+      veterinary.setRoomAvailabilityFalse(pet);
       System.out.println("La mascota ha sido agregada al servicio satisfactoriamente.");
+      veterinary.showRoom6Availability();
+      veterinary.showClient();
     }
     else {
-
+      System.out.println("");
+      System.out.println("Todos los cuartos se encuentran llenos, por favor intente mas tarde.");
     }
   }
 }
