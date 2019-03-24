@@ -16,8 +16,6 @@ public class Client {
     this.address = address;
     this.phoneNumber = phoneNumber;
     pets = new ArrayList<Pet>();
-    // Client Angela = new Client("Angela", "1006206201", "Calle 10", "3208810");
-    // Pet Mateo = new Pet("Mateo", "Perro", 12, 15.0, Angela);
   }
 
   public String getName() {
@@ -58,5 +56,21 @@ public class Client {
 
   public void showPets() {
     System.out.println(pets.get(0).getName());
+  }
+
+  public void startHospitalize(String petName, MedicalRecord medRecord, Medicines medicine){
+    boolean bPets = false;
+    for(int i = 0; i < pets.size() && !bPets; i++) {
+      if(!pets.get(i).getName().equals(petName)){
+        bPets = true;
+        pets.get(i).addMedRecord(medRecord, medicine);
+      }
+    }
+  }
+
+  public void showClientPetMedicalRecord() {
+    for(int i = 0; i < pets.size(); i++) {
+      pets.get(i).showMedicalRecord();
+    }
   }
 }

@@ -67,4 +67,23 @@ public class Veterinary {
       }
     }
   }
+
+  public void showAllMedicalRecords() {
+    for(int i = 0; i < clients.size(); i++) {
+      clients.get(i).showClientPetMedicalRecord();
+    }
+  }
+
+  public void hospitalizeVet(String clientName, String clientId , String petName, MedicalRecord medRecord, Medicines medicines){
+    boolean stop = false;
+    for(int i = 0; i < clients.size() && !stop; i++) {
+      if(!clients.get(i).getName().equals(clientName) && clients.get(i).getId() == clientId){
+        stop = true;
+        clients.get(i).startHospitalize(petName, medRecord, medicines);
+      }
+      // else {
+      //   Pet relation = clients.get(i).findPet(petName);
+      // }
+    }
+  }
 }

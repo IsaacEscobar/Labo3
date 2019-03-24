@@ -23,8 +23,8 @@ public class Main {
 
   public void init() {
     veterinary = new Veterinary();
-    Client Angela = new Client("Angela", "1006206201", "Calle 10", "3208810");
-    Pet Mateo = new Pet("Mateo", "Perro", 12, 15.0, Angela);
+    //Client Angela = new Client("Angela", "1006206201", "Calle 10", "3208810");
+    //Pet Mateo = new Pet("Mateo", "Perro", 12, 15.0, Angela);
   }
 
   public void Menu() {
@@ -37,7 +37,10 @@ public class Main {
         // addClient();
         // break;
         case 1:
-        hospitalizePet();
+          hospitalizePet();
+        break;
+        case 2:
+          showMedicalRecord();
         break;
       }
     }
@@ -53,7 +56,6 @@ public class Main {
     System.out.println("-----------------------------------------------------");
     System.out.println("----- Escoja alguna de las siguientes opciones  -----");
     System.out.println("-----------------------------------------------------");
-    // System.out.println("--1. Agregar un nuevo cliente.");
     System.out.println("--1. Hospitalizar una mascota.");
     System.out.println("--2. Ver el informe de las historias clinicas.");
     System.out.println("--3. Dar de alta a una mascota.");
@@ -109,6 +111,9 @@ public class Main {
       String userResponse = readerString.nextLine();
       petWeight = Double.valueOf(userResponse);
       System.out.println("");
+      System.out.println("Digite lo sintomas de la mascota: ");
+      String symptoms = readerString.nextLine();
+      System.out.println("");
       //
       System.out.println("Digite el nombre del cliente: ");
       name = readerString.nextLine();
@@ -123,17 +128,49 @@ public class Main {
       phoneNumber = readerString.nextLine();
       System.out.println("");
       Client client = new Client(name, id, address, phoneNumber);
-      Pet pet = new Pet(petName, petType, petAge, petWeight, client);
+      Pet pet = new Pet(petName, petType, petAge, petWeight, symptoms, client);
       veterinary.addNewClient(client);
       veterinary.addNewPet(client, pet);
       veterinary.setRoomAvailabilityFalse(pet);
+      System.out.println("Digite el dia de ingreso: ");
+      int entryDay = readerInt.nextInt();
+      System.out.println("");
+      System.out.println("Digite el mes de ingreso: ");
+      int entryMonth = readerInt.nextInt();
+      System.out.println("");
+      System.out.println("Digite el año de ingreso: ");
+      int entryYear = readerInt.nextInt();
+      System.out.println("");
+      System.out.println("Digite el diagnostico: ");
+      String diagnosis = readerString.nextLine();
+      System.out.println("");
+      // Pet pet2 = principal.findPett(nameClie, idClie, namePe);
+      MedicalRecord medRecord = new MedicalRecord(name, id, petName, symptoms, entryDay, entryMonth, entryYear, diagnosis);
+      System.out.println("Digite el nombre del medicamento: ");
+      String medicine = readerString.nextLine();
+      System.out.println("");
+      System.out.println("Digite la dosis");
+      String doseResponse = readerString.nextLine();
+      double dose = Double.valueOf(doseResponse);
+      System.out.println("");
+      System.out.println("Digite el costo del medicamento: ");
+      String doseCostResponse = readerString.nextLine();
+      double doseCost = Double.valueOf(doseCostResponse);
+      System.out.println("");
+      System.out.println("Digite la frecuencia del medicamento: ");
+      int frecuency = readerInt.nextInt();
+      System.out.println("");
+      Medicines medicines = new Medicines(medicine, dose, doseCost, frecuency);
+      veterinary.hospitalizeVet(name, id, petName, medRecord, medicines);
       System.out.println("La mascota ha sido agregada al servicio satisfactoriamente.");
-      veterinary.showRoom6Availability();
-      veterinary.showClient();
     }
     else {
       System.out.println("");
       System.out.println("Todos los cuartos se encuentran llenos, por favor intente mas tarde.");
     }
+  }
+
+  public void showMedicalRecord() {
+    veterinary.showAllMedicalRecords();
   }
 }
