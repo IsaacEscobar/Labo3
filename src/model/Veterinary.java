@@ -40,9 +40,9 @@ public class Veterinary {
     return isEmpty;
   }
 
-  public void showRoom6Availability() {
-    System.out.println(rooms[6].isAvailability());
-  }
+  // public void showRoom6Availability() {
+  //   System.out.println(rooms[6].isAvailability());
+  // }
 
   public void setPetInARoom(Pet pet) {
     for(int i = 0; i < 8; i++) {
@@ -53,10 +53,10 @@ public class Veterinary {
     }
   }
 
-  public void showClient() {
-    System.out.println(clients.get(0).getName());
-    clients.get(0).showPets();
-  }
+  // public void showClient() {
+  //   System.out.println(clients.get(0).getName());
+  //   clients.get(0).showPets();
+  // }
 
   public void setRoomAvailabilityFalse(Pet pet) {
     for(int i = 0; i < 8; i++) {
