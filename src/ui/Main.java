@@ -42,6 +42,9 @@ public class Main {
         case 2:
           showMedicalRecord();
         break;
+        case 3:
+          takeOutAPet();
+        break;
       }
     }
     while(option != 4);
@@ -138,7 +141,7 @@ public class Main {
       System.out.println("Digite el mes de ingreso: ");
       int entryMonth = readerInt.nextInt();
       System.out.println("");
-      System.out.println("Digite el año de ingreso: ");
+      System.out.println("Digite el anho de ingreso: ");
       int entryYear = readerInt.nextInt();
       System.out.println("");
       System.out.println("Digite el diagnostico: ");
@@ -172,5 +175,18 @@ public class Main {
 
   public void showMedicalRecord() {
     veterinary.showAllMedicalRecords();
+  }
+
+  public void takeOutAPet() {
+    if(veterinary.emptyRoom() == false) {
+      System.out.println("Digite el numero del cuarto y despues el nombre de la mascota: ");
+      veterinary.showPetsNames();
+      int numberOfRoom = readerInt.nextInt();
+      String petToTake = readerString.nextLine();
+      veterinary.takeOutOfARoom(numberOfRoom, petToTake);
+    }
+    else {
+      System.out.println("Todos los cuartos se encuentran vacios.");
+    }
   }
 }

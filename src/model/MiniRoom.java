@@ -55,4 +55,8 @@ public class MiniRoom {
   public void setPetInRoom(Pet petInRoom) {
     this.petInRoom = petInRoom;
   }
+
+  public String showPet() {
+    return System.out.println(getPetInRoom().getName());
+  }
 }

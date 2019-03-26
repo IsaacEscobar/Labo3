@@ -54,9 +54,11 @@ public class Client {
     pets.add(newPet);
   }
 
-  public void showPets() {
-    System.out.println(pets.get(0).getName());
-  }
+  // public void showPets() {
+  //   for(int i = 0; i < pets.size(); i++) {
+  //     System.out.println(pets.get(i).getName());
+  //   }
+  // }
 
   public void startHospitalize(String petName, MedicalRecord medRecord, Medicines medicine){
     boolean bPets = false;

@@ -86,4 +86,19 @@ public class Veterinary {
       // }
     }
   }
+
+  public void showPetsNames() {
+    for(int i = 0; i < rooms.length; i++) {
+      System.out.println(i + " " + rooms[i].showPet());
+    }
+  }
+
+  public void takeOutOfARoom(int numberOfRoom, String petToTake) {
+    for(int i = 0; i < rooms.length; i++) {
+      if(petToTake == rooms[i].getPetInRoom().getName()) {
+        i = 7;
+        rooms[numberOfRoom].setPetInRoom(null);
+      }
+    }
+  }
 }
